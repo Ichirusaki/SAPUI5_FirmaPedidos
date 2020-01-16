@@ -1,0 +1,46 @@
+<mvc:View controllerName="tech.sothis.fcd.FirmarCertificado.controller.SmartTable" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:SemanticPage id="page" title="{i18n>smartTable}" showNavButton="true" navButtonPress="onBackPress">
+		<semantic:content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="PedidoSet" persistencyKey="SmartFilter_Pedido" showMessages="false">
+				<smartFilterBar:customData >
+					<core:CustomData key="dateFormatSettings" value='\{"UTC":true\}'/>
+				</smartFilterBar:customData>
+				<smartFilterBar:controlConfiguration groupId="_BASIC">
+					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Lifnr" index="1" visibleInAdvancedArea="true" filterType="single"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Bedat" index="2" visibleInAdvancedArea="true" filterType="single"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Status" index="3" visibleInAdvancedArea="true" label="{i18n>firmado}">
+						<smartFilterBar:customControl>
+							<CheckBox></CheckBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable entitySet="PedidoSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable" id="smartTable"
+				useVariantManagement="true" useTablePersonalisation="false" header="{i18n>Pedidos}" showRowCount="true"
+				persistencyKey="SmartTableAnalytical_Pedidos" enableAutoBinding="false" demandPopin="true" class="sapUiResponsiveContentPadding"
+				requestAtLeastFields="Ebeln,Lifnr,Name1,Bedat,Netwr,Waers,Status" editable="false" editTogglable="false"
+				beforeRebindTable="onBeforeRebindTable">
+				<smartTable:layoutData >
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+				<Table mode="None" growingThreshold="50" growing="true" growingScrollToLoad="true">
+					<columns>
+						<Column customData:p13nData='\{"columnKey": "Estado", "columnIndex": "4", "maxLength": "1", "isCurrency": false, "leadingProperty": "Status", "sortProperty": "Status"}'>
+							<Text text="{i18n>estado}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<core:Icon src="sap-icon://signature" tooltip="{ path: 'Status', formatter: '.formatter.tooltipIcono' }"
+								color="{ path: 'Status', formatter: '.formatter.colorIcono' }"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

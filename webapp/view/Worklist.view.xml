@@ -1,0 +1,70 @@
+<mvc:View controllerName="tech.sothis.fcd.FirmarCertificado.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>worklistTitle}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<Table id="table" width="auto" items="{ path: '/PedidoSet', sorter: { path: 'Ebeln', descending: false } }" mode="MultiSelect"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+						<ToolbarSpacer/>
+						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="180px"></SearchField>
+						<Button visible="{= !${device>/support/touch}}" icon="sap-icon://signature" tooltip="{i18n>firmarPedidos}" press="onFirmarPress"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="100px" id="nameColumn">
+						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					</Column>
+					<Column id="proveedorColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>proveedor}" id="proveedorColumnTitle"/>
+					</Column>
+					<Column hAlign="Center" id="fechaColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>fecha}" id="fechaColumnTitle"/>
+					</Column>
+					<Column id="unitNumberColumn" hAlign="End">
+						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+					</Column>
+					<Column hAlign="Center" width="100px" id="estadoColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>estado}" id="estadoColumnTitle"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onPress">
+						<cells>
+							<Text text="{Ebeln}"/>
+							<Text text="{Lifnr} - {Name1}"/>
+							<Text text="{ path: 'Bedat', type: 'sap.ui.model.type.Date'}"/>
+							<ObjectNumber
+								number="{ parts: [ { path: 'Netwr' }, { path: 'Waers' } ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+								unit="{Waers}"/>
+							<core:Icon src="sap-icon://signature" tooltip="{ path: 'Status', formatter: '.formatter.tooltipIcono' }"
+								color="{ path: 'Status', formatter: '.formatter.colorIcono' }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<!--<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
+		</semantic:saveAsTileAction>-->
+		<semantic:footerCustomActions>
+			<Button text="{i18n>smartTable}" press="onSmartTablePress"/>
+			<Button icon="sap-icon://signature" visible="{device>/support/touch}" text="{i18n>firmarPedidos}" press="onFirmarPress"/>
+			<Button icon="sap-icon://synchronize" text="{i18n>actualizar}" press="onRefresh"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

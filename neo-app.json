@@ -1,0 +1,54 @@
+{
+  "routes": [
+    {
+      "path": "/webapp/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.52.38"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/webapp/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.52.38"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.52.38"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.52.38"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/SGW_BASELINE",
+      "target": {
+        "type": "destination",
+        "name": "SGW_BASELINE"
+      },
+      "description": "SGW Baseline"
+    }
+  ],
+  "welcomeFile": "/webapp/test/flpSandbox.html",
+  "sendWelcomeFileRedirect": true
+}

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZUI5_FIRMACERT_SRV" xml:lang="es" sap:schema-version="1">
+			<EntityType Name="Peticion" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="CodPeticion"/>
+				</Key>
+				<Property Name="CodPeticion" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Id. Petic."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="PedidoSet" Relationship="ZUI5_FIRMACERT_SRV.Peticion_To_Pedido" FromRole="FromRole_Peticion_To_Pedido"
+					ToRole="ToRole_Peticion_To_Pedido"/>
+			</EntityType>
+			<EntityType Name="Pedido" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ebeln"/>
+				</Key>
+				<Property Name="CodPeticion" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Id. Petic."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Proveedor" sap:creatable="false"
+					sap:sortable="false"/>
+				<Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nombre" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Netwr" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:unit="Waers"
+					sap:label="Valor neto" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Moneda" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+				<Property Name="Bedat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:display-format="Date" sap:unicode="false"
+					sap:label="Fecha documento" sap:creatable="false" sap:sortable="false"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:sortable="false"/>
+				<NavigationProperty Name="PeticionSet" Relationship="ZUI5_FIRMACERT_SRV.Peticion_To_Pedido" FromRole="ToRole_Peticion_To_Pedido"
+					ToRole="FromRole_Peticion_To_Pedido"/>
+				<NavigationProperty Name="PosicionSet" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Posicion" FromRole="FromRole_Pedido_To_Posicion"
+					ToRole="ToRole_Pedido_To_Posicion"/>
+				<NavigationProperty Name="ArchivoSet" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Archivo" FromRole="FromRole_Pedido_To_Archivo"
+					ToRole="ToRole_Pedido_To_Archivo"/>
+				<NavigationProperty Name="AdjuntoSet" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Adjunto" FromRole="FromRole_Pedido_To_Adjunto"
+					ToRole="ToRole_Pedido_To_Adjunto"/>
+			</EntityType>
+			<EntityType Name="Posicion" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ebeln"/>
+					<PropertyRef Name="Ebelp"/>
+				</Key>
+				<Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominación" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Ebelp" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Posición" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Menge" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Cantidad pedido"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UM de pedido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="Netpr" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Precio neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Netwr" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:label="Valor neto"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Moneda" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+				<NavigationProperty Name="Pedido" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Posicion" FromRole="ToRole_Pedido_To_Posicion"
+					ToRole="FromRole_Pedido_To_Posicion"/>
+			</EntityType>
+			<EntityType Name="Archivo" m:HasStream="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Arcdocid"/>
+					<PropertyRef Name="Archivid"/>
+					<PropertyRef Name="Arobject"/>
+					<PropertyRef Name="Ebeln"/>
+					<PropertyRef Name="SapObject"/>
+				</Key>
+				<Property Name="Arcdocid" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="ID doc.archivo"/>
+				<Property Name="Archivid" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="IDContRep"/>
+				<Property Name="Arobject" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Clase documento"/>
+				<Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras"/>
+				<Property Name="Mimetype" Type="Edm.String" MaxLength="132" sap:unicode="false" sap:label="Texto"/>
+				<Property Name="SapObject" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Tipo de objeto"/>
+				<NavigationProperty Name="Pedido" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Archivo" FromRole="ToRole_Pedido_To_Archivo"
+					ToRole="FromRole_Pedido_To_Archivo"/>
+			</EntityType>
+			<EntityType Name="Adjunto" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Arcdocid"/>
+					<PropertyRef Name="Archivid"/>
+					<PropertyRef Name="Arobject"/>
+					<PropertyRef Name="Ebeln"/>
+					<PropertyRef Name="SapObject"/>
+				</Key>
+				<Property Name="Arcdocid" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="ID doc.archivo"/>
+				<Property Name="Archivid" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="IDContRep"/>
+				<Property Name="Arobject" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Clase documento"/>
+				<Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras"/>
+				<Property Name="Mimetype" Type="Edm.String" MaxLength="132" sap:unicode="false" sap:label="Texto"/>
+				<Property Name="SapObject" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Tipo de objeto"/>
+				<Property Name="Nombre" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Nombre"/>
+				<Property Name="Fecha" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Fecha"/>
+				<Property Name="Peso" Type="Edm.Int32" sap:unicode="false" sap:label="Peso"/>
+				<NavigationProperty Name="Pedido" Relationship="ZUI5_FIRMACERT_SRV.Pedido_To_Adjunto" FromRole="ToRole_Pedido_To_Adjunto"
+					ToRole="FromRole_Pedido_To_Adjunto"/>
+			</EntityType>
+			<EntityType Name="Proveedor" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Lifnr"/>
+				</Key>
+				<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Acreedor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nombre" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<Association Name="Pedido_To_Posicion" sap:content-version="1">
+				<End Type="ZUI5_FIRMACERT_SRV.Pedido" Multiplicity="1" Role="FromRole_Pedido_To_Posicion"/>
+				<End Type="ZUI5_FIRMACERT_SRV.Posicion" Multiplicity="*" Role="ToRole_Pedido_To_Posicion"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Pedido_To_Posicion">
+						<PropertyRef Name="Ebeln"/>
+					</Principal>
+					<Dependent Role="ToRole_Pedido_To_Posicion">
+						<PropertyRef Name="Ebeln"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Pedido_To_Archivo" sap:content-version="1">
+				<End Type="ZUI5_FIRMACERT_SRV.Pedido" Multiplicity="1" Role="FromRole_Pedido_To_Archivo"/>
+				<End Type="ZUI5_FIRMACERT_SRV.Archivo" Multiplicity="*" Role="ToRole_Pedido_To_Archivo"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Pedido_To_Archivo">
+						<PropertyRef Name="Ebeln"/>
+					</Principal>
+					<Dependent Role="ToRole_Pedido_To_Archivo">
+						<PropertyRef Name="Ebeln"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Pedido_To_Adjunto" sap:content-version="1">
+				<End Type="ZUI5_FIRMACERT_SRV.Pedido" Multiplicity="1" Role="FromRole_Pedido_To_Adjunto"/>
+				<End Type="ZUI5_FIRMACERT_SRV.Adjunto" Multiplicity="*" Role="ToRole_Pedido_To_Adjunto"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Pedido_To_Adjunto">
+						<PropertyRef Name="Ebeln"/>
+					</Principal>
+					<Dependent Role="ToRole_Pedido_To_Adjunto">
+						<PropertyRef Name="Ebeln"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Peticion_To_Pedido" sap:content-version="1">
+				<End Type="ZUI5_FIRMACERT_SRV.Peticion" Multiplicity="*" Role="FromRole_Peticion_To_Pedido"/>
+				<End Type="ZUI5_FIRMACERT_SRV.Pedido" Multiplicity="*" Role="ToRole_Peticion_To_Pedido"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Peticion_To_Pedido">
+						<PropertyRef Name="CodPeticion"/>
+					</Principal>
+					<Dependent Role="ToRole_Peticion_To_Pedido">
+						<PropertyRef Name="CodPeticion"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZUI5_FIRMACERT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="PeticionSet" EntityType="ZUI5_FIRMACERT_SRV.Peticion" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="PedidoSet" EntityType="ZUI5_FIRMACERT_SRV.Pedido" sap:creatable="false" sap:deletable="false" sap:searchable="true"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="PosicionSet" EntityType="ZUI5_FIRMACERT_SRV.Posicion" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="ArchivoSet" EntityType="ZUI5_FIRMACERT_SRV.Archivo" sap:updatable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="AdjuntoSet" EntityType="ZUI5_FIRMACERT_SRV.Adjunto" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="ProveedorSet" EntityType="ZUI5_FIRMACERT_SRV.Proveedor" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="Pedido_To_ArchivoSet" Association="ZUI5_FIRMACERT_SRV.Pedido_To_Archivo" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PedidoSet" Role="FromRole_Pedido_To_Archivo"/>
+					<End EntitySet="ArchivoSet" Role="ToRole_Pedido_To_Archivo"/>
+				</AssociationSet>
+				<AssociationSet Name="Pedido_To_AdjuntoSet" Association="ZUI5_FIRMACERT_SRV.Pedido_To_Adjunto" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PedidoSet" Role="FromRole_Pedido_To_Adjunto"/>
+					<End EntitySet="AdjuntoSet" Role="ToRole_Pedido_To_Adjunto"/>
+				</AssociationSet>
+				<AssociationSet Name="Pedidio_To_PosicionSet" Association="ZUI5_FIRMACERT_SRV.Pedido_To_Posicion" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PedidoSet" Role="FromRole_Pedido_To_Posicion"/>
+					<End EntitySet="PosicionSet" Role="ToRole_Pedido_To_Posicion"/>
+				</AssociationSet>
+				<AssociationSet Name="Peticion_To_PedidoSet" Association="ZUI5_FIRMACERT_SRV.Peticion_To_Pedido" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PeticionSet" Role="FromRole_Peticion_To_Pedido"/>
+					<End EntitySet="PedidoSet" Role="ToRole_Peticion_To_Pedido"/>
+				</AssociationSet>
+				<FunctionImport Name="FirmarPedido" ReturnType="ZUI5_FIRMACERT_SRV.Pedido" EntitySet="PedidoSet" m:HttpMethod="GET"
+					sap:action-for="ZUI5_FIRMACERT_SRV.Pedido">
+					<Parameter Name="Ebeln" Type="Edm.String" Mode="In" MaxLength="10"/>
+				</FunctionImport>
+			</EntityContainer>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://webidecp-p2001796571trial.dispatcher.hanatrial.ondemand.com/destinations/SGW_BASELINE/sap/opu/odata/SAP/ZUI5_FIRMACERT_SRV/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://webidecp-p2001796571trial.dispatcher.hanatrial.ondemand.com/destinations/SGW_BASELINE/sap/opu/odata/SAP/ZUI5_FIRMACERT_SRV/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

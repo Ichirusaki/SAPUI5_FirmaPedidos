@@ -1,0 +1,81 @@
+<mvc:View controllerName="tech.sothis.fcd.FirmarCertificado.controller.EditarPedido" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>objectViewTitle}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<f:SimpleForm id="fPedido" editable="true" labelSpanL="2" labelSpanM="2" labelSpanS="12" columnsL="1"
+				layout="ResponsiveGridLayout" title="{Ebeln}" singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>NetwrLabel}" />
+					<ObjectNumber
+						number="{ parts: [ { path: 'Netwr' }, { path: 'Waers' } ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+						unit="{Waers}" />
+					<Label text="{i18n>proveedor}" />
+					<Text text="{Lifnr} - {Name1}" />
+					<Label wrapping="true" text="{i18n>fecha}" />
+					<DatePicker width="150px" id="dpFecha" textAlign="End" value="{ path: 'Bedat', type: 'sap.ui.model.type.Date'}" />
+				</f:content>
+			</f:SimpleForm>
+		</semantic:headerContent>
+		<semantic:content>
+			<Table id="tPosicionesEditar" width="auto" items="{ path: 'PosicionSet', sorter: { path: 'Ebelp', descending: false } }" growing="true"
+				growingScrollToLoad="true" updateFinished="onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{editarPedidoView>/tituloTablaPosiciones}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>tablePosicionColumnTitle}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>tableMaterialColumnTitle}"/>
+					</Column>
+					<Column hAlign="End" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>tableCantidadColumnTitle}"/>
+					</Column>
+					<Column hAlign="End" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="{i18n>tablePrecioColumnTitle}"/>
+					</Column>
+					<Column hAlign="End">
+						<Text text="{i18n>tableImporteColumnTitle}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Ebelp}"/>
+							<Text text="{Matnr} - {Maktx}"/>
+							<Input id="Menge" type="Number" liveChange="onInputChange" textAlign="End" value="{Menge}" description="{Meins}"/>
+							<Input id="Netpr" type="Number" liveChange="onInputChange" textAlign="End" value="{Netpr}" description="{Waers}"/>
+							<ObjectNumber
+								number="{ parts: [ { path: 'Netwr' }, { path: 'Waers' } ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+								unit="{Waers}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>guardar}" press="onGuardarPress"/>
+		</semantic:positiveAction>
+		<semantic:negativeAction>
+			<semantic:NegativeAction text="{i18n>cancelar}" press="onCancelarPress"/>
+		</semantic:negativeAction>
+		<!--<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
+		</semantic:saveAsTileAction>-->
+	</semantic:SemanticPage>
+</mvc:View>

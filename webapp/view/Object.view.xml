@@ -1,0 +1,130 @@
+<mvc:View
+	controllerName="tech.sothis.fcd.FirmarCertificado.controller.Object"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}"
+		showFooter="true">
+
+		<semantic:titleHeading>
+			<Title text="{i18n>objectViewTitle}" />
+		</semantic:titleHeading>
+
+		<semantic:headerContent>
+			<Button icon="sap-icon://nav-back" press="onBackPress" text="{i18n>atras}" tooltip="{i18n>atras}"/>
+			<ObjectHeader title="{Ebeln}" 
+				number="{parts: [ { path: 'Netwr' }, { path: 'Waers' } ],
+						type: 'sap.ui.model.type.Currency',
+						formatOptions: {showMeasure: false}
+						}"
+				numberUnit="{Waers}">
+			<attributes>
+				<ObjectAttribute title="{i18n>proveedor}" text="{Lifnr} - {Name1}" />
+				<ObjectAttribute title="{i18n>fecha}" text="{ path: 'Bedat', type: 'sap.ui.model.type.Date'}" />
+			</attributes>
+			<statuses>
+				<ObjectStatus icon="sap-icon://signature"
+							  text="{ path: 'Status', formatter: '.formatter.tooltipIcono' }"
+							  state="{ path: 'Status', formatter: '.formatter.statusColor'}"/>
+			</statuses>
+			</ObjectHeader>
+		</semantic:headerContent>
+		
+		<semantic:content>
+			<Table id="tPosiciones"
+				width="auto"
+				items="{
+					path: 'PosicionSet',
+					sorter: {
+						path: 'Ebelp',
+						descending: false
+					}
+				}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{objectView>/tituloTablaPosiciones}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline">
+						<Text text="{i18n>tablePosicionColumnTitle}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>tableMaterialColumnTitle}"/>
+					</Column>
+					<Column hAlign="Right"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline">
+						<Text text="{i18n>tableCantidadColumnTitle}"/>
+					</Column>
+					<Column hAlign="Right"
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							popinDisplay="Inline">
+						<Text text="{i18n>tablePrecioColumnTitle}"/>
+					</Column>
+					<Column hAlign="Right">
+						<Text text="{i18n>tableImporteColumnTitle}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Ebelp}"/>
+							<Text text="{Matnr} - {Maktx}"/>
+							<ObjectNumber
+								number="{Menge}" unit="{Meins}"/>
+							<ObjectNumber
+								number="{
+									parts: [ { path: 'Netpr' }, { path: 'Waers' } ],
+									type: 'sap.ui.model.type.Currency',
+									formatOptions: {showMeasure: false}
+								}"
+								unit="{Waers}"/>
+							<ObjectNumber
+								number="{
+									parts: [ { path: 'Netwr' }, { path: 'Waers' } ],
+									type: 'sap.ui.model.type.Currency',
+									formatOptions: {showMeasure: false}
+								}"
+								unit="{Waers}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		
+		<semantic:footerCustomActions>
+			<Button icon="sap-icon://edit" text="{i18n>editar}" press="onEditarPress" />
+			<Button icon="sap-icon://signature" text="{i18n>firmarPedidos}"  press="onFirmarPress"/>
+			<Button icon="sap-icon://attachment" text="{i18n>adjuntos}" press="onAdjuntarPress" />
+		</semantic:footerCustomActions>
+
+		<!--<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+	
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
+		</semantic:saveAsTileAction>-->
+
+	</semantic:SemanticPage>
+
+</mvc:View>

@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<Dialog stretch="{device>/system/phone}" title="{i18n>adjuntar}" class="sapUiPopupWithPadding" draggable="true">
+		<content>
+			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+				<u:FileUploader id="fileUploader" width="{= ${device>/system/phone} ? '' : '400px' }" name="myFileUpload" fileType="pdf"
+					mimeType="application/pdf" buttonText="{i18n>examinar}" placeholder="{= ${device>/system/phone} ? ${i18n>fileUploadPlaceholderMovil} : ${i18n>fileUploadPlaceholder} }"
+					uploadUrl="/ArchivoSet" useMultipart="false" sendXHR="true" maximumFilenameLength="100" maximumFileSize="10"
+					uploadComplete="onFileUploadComplete" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed"
+					typeMissmatch="onTypeMissmatch" fileAllowed="onFileAllowed" />
+				<Button text="{i18n>adjuntarButton}" press="onOkDialogPress"/>
+				<List id="lAdjuntos" mode="Delete" updateFinished="onUpdateAdjuntosFinished" delete="onFileDeleted"
+					items="{ path: 'AdjuntoSet', sorter: { path: 'Nombre', descending: false } }">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="{objectView>/tituloListaAdjuntos}"/>
+						</Toolbar>
+					</headerToolbar>
+					<items>
+						<CustomListItem>
+							<HBox>
+								<core:Icon size="2rem" src="sap-icon://pdf-attachment" tooltip="{i18n>pdf}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+								<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+									<Text text="{Nombre}"/>
+									<Label text="{i18n>tamanyo}: {path: 'Peso', formatter: '.formatter.pesoArchivo'}"/>
+									<Label text="{i18n>fechaAdjunto}: { path: 'Fecha', type: 'sap.ui.model.type.Date'}"/>
+								</VBox>
+							</HBox>
+						</CustomListItem>
+					</items>
+					<layoutData>
+						<l:GridData span="L12 M12 S12"/>
+					</layoutData>
+				</List>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>cerrar}" press="onCerrarDialogPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
