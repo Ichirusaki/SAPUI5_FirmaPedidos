@@ -60,22 +60,11 @@
 				</items>
 			</Table>
 		</semantic:content>
-		<semantic:positiveAction>
-			<semantic:PositiveAction text="{i18n>guardar}" press="onGuardarPress"/>
-		</semantic:positiveAction>
 		<semantic:negativeAction>
 			<semantic:NegativeAction text="{i18n>cancelar}" press="onCancelarPress"/>
 		</semantic:negativeAction>
-		<!--<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-		
-		<semantic:shareInJamAction>
-			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
-		</semantic:shareInJamAction>
-
-		<semantic:saveAsTileAction>
-			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
-		</semantic:saveAsTileAction>-->
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>guardar}" press="onGuardarPress"/>
+		</semantic:positiveAction>
 	</semantic:SemanticPage>
 </mvc:View>

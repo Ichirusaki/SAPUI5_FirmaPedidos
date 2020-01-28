@@ -50,17 +50,6 @@
 				</items>
 			</Table>
 		</semantic:content>
-		<!--<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-		
-		<semantic:shareInJamAction>
-			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
-		</semantic:shareInJamAction>
-
-		<semantic:saveAsTileAction>
-			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
-		</semantic:saveAsTileAction>-->
 		<semantic:footerCustomActions>
 			<Button text="{i18n>smartTable}" press="onSmartTablePress"/>
 			<Button icon="sap-icon://signature" visible="{device>/support/touch}" text="{i18n>firmarPedidos}" press="onFirmarPress"/>
