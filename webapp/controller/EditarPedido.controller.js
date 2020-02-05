@@ -41,11 +41,12 @@ sap.ui.define([
 			// Store original busy indicator delay, so it can be restored later on
 			iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
 			this.setModel(oViewModel, "editarPedidoView");
-			this.getOwnerComponent().getModel().metadataLoaded().then(function () {
+			this.getOwnerComponent().getModel().metadataLoaded().then( () => {
 				// Restore original busy indicator delay for the object view
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
 			});
 		},
+
 		onUpdateFinished: function (oEvent) {
 			// update the worklist's object counter after the table update
 			var tableHeader,
@@ -96,10 +97,10 @@ sap.ui.define([
 		 */
 		_onEditarPedidoMatched: function (oEvent) {
 			var sObjectId = oEvent.getParameter("arguments").objectId;
-			this.getModel().metadataLoaded().then(function () {
+			this.getModel().metadataLoaded().then( () => {
 				var sObjectPath = "/PedidoSet('" + sObjectId + "')";
 				this._bindView(sObjectPath);
-			}.bind(this));
+			});
 		},
 
 		/**
@@ -116,10 +117,10 @@ sap.ui.define([
 				path: sObjectPath,
 				events: {
 					change: this._onBindingChange.bind(this),
-					dataRequested: function () {
+					dataRequested: () => {
 						oViewModel.setProperty("/busy", true);
 					},
-					dataReceived: function () {
+					dataReceived: () => {
 						oViewModel.setProperty("/busy", false);
 					}
 				}
@@ -178,16 +179,16 @@ sap.ui.define([
 			MessageBox.show(this.getResourceBundle().getText("modificarPedidoAsk"), {
 				icon: sap.m.MessageBox.Icon.WARNING,
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-				onClose: function (sResult) {
+				onClose: sResult => {
 					if (sResult === sap.m.MessageBox.Action.YES) {
 						oModel.create("/PedidoSet", oPedido, {
-							success: function (oData) {
+							success: oData => {
 								sap.m.MessageToast.show(this.getResourceBundle().getText("pedidoModificadoExito"));
-							}.bind(this)
+							}
 						});
 						this.onNavBack();
 					}
-				}.bind(this)
+				}
 			});
 
 		},
@@ -209,15 +210,15 @@ sap.ui.define([
 			var iNewParameter = oEvent.getParameters().value;
 			var oModel = this.getModel();
 			var oBindingContext = oEvent.getSource().getBindingContext();
-			
+
 			var sOtherProperty;
 			var bIsMenge = oEvent.getSource().getId().includes("Menge");
-			if(bIsMenge){
+			if (bIsMenge) {
 				sOtherProperty = oBindingContext + "/Netpr";
 			} else {
 				sOtherProperty = oBindingContext + "/Menge";
 			}
-			
+
 			var sNetwrProperty = oBindingContext + "/Netwr";
 			var sEbelnProperty = oBindingContext + "/Ebeln";
 			var iNetwr = oModel.getProperty(sOtherProperty) * iNewParameter;

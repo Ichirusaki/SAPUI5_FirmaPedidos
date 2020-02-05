@@ -46,12 +46,11 @@ sap.ui.define([
 				tableBusyDelay: 0
 			});
 			this.setModel(oViewModel, "worklistView");
-		
 
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
-			oTable.attachEventOnce("updateFinished", function () {
+			oTable.attachEventOnce("updateFinished", () => {
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
@@ -61,6 +60,8 @@ sap.ui.define([
 				icon: "sap-icon://table-view",
 				intent: "#FirmaCertificado-display"
 			}, true);
+
+
 		},
 
 		/* =========================================================== */
@@ -100,7 +101,7 @@ sap.ui.define([
 			// The source is the list item that got pressed
 			this._showObject(oEvent.getSource());
 		},
-		
+
 		onSmartTablePress: function (oEvent) {
 			this._showSmartTable(oEvent.getSource());
 		},
@@ -167,7 +168,7 @@ sap.ui.define([
 				objectId: oItem.getBindingContext().getProperty("Ebeln")
 			});
 		},
-		
+
 		_showSmartTable: function (oItem) {
 			this.getRouter().navTo("smartTable");
 		},

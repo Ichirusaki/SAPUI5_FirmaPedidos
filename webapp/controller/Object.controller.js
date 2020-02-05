@@ -41,7 +41,7 @@ sap.ui.define([
 			// Store original busy indicator delay, so it can be restored later on
 			iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
 			this.setModel(oViewModel, "objectView");
-			this.getOwnerComponent().getModel().metadataLoaded().then(function () {
+			this.getOwnerComponent().getModel().metadataLoaded().then( () => {
 				// Restore original busy indicator delay for the object view
 				oViewModel.setProperty("/delay", iOriginalBusyDelay);
 			});
@@ -110,12 +110,12 @@ sap.ui.define([
 		 */
 		_onObjectMatched: function (oEvent) {
 			var sObjectId = oEvent.getParameter("arguments").objectId;
-			this.getModel().metadataLoaded().then(function () {
+			this.getModel().metadataLoaded().then( () => {
 				var sObjectPath = this.getModel().createKey("PedidoSet", {
 					Ebeln: sObjectId
 				});
 				this._bindView("/" + sObjectPath);
-			}.bind(this));
+			});
 		},
 
 		/**
@@ -132,7 +132,7 @@ sap.ui.define([
 				path: sObjectPath,
 				events: {
 					change: this._onBindingChange.bind(this),
-					dataRequested: function () {
+					dataRequested:  () => {
 						oDataModel.metadataLoaded().then(function () {
 							// Busy indicator on view should only be set if metadata is loaded,
 							// otherwise there may be two busy indications next to each other on the
@@ -141,7 +141,7 @@ sap.ui.define([
 							oViewModel.setProperty("/busy", true);
 						});
 					},
-					dataReceived: function () {
+					dataReceived: () => {
 						oViewModel.setProperty("/busy", false);
 					}
 				}
@@ -210,19 +210,19 @@ sap.ui.define([
 				MessageBox.show(this.getResourceBundle().getText("firmarPedidoAsk"), {
 					icon: sap.m.MessageBox.Icon.WARNING,
 					actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-					onClose: function (sResult) {
+					onClose: sResult => {
 						if (sResult === sap.m.MessageBox.Action.YES) {
 							oModel.callFunction("/FirmarPedido", {
 								method: "GET",
 								urlParameters: {
 									"Ebeln": sEbeln
 								},
-								success: function (oData) {
+								success: (oData, oResponse) => {
 									sap.m.MessageToast.show(this.getResourceBundle().getText("pedidoFirmadoExito"));
-								}.bind(this)
+								}
 							});
 						}
-					}.bind(this)
+					}
 				});
 			}
 
@@ -324,16 +324,16 @@ sap.ui.define([
 			MessageBox.show(this.getResourceBundle().getText("borrarAdjuntoAsk"), {
 				icon: sap.m.MessageBox.Icon.WARNING,
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-				onClose: function (sResult) {
+				onClose: sResult => {
 					if (sResult === sap.m.MessageBox.Action.YES) {
 						this.getModel().remove(sAdjuntoPath, {
-							success: function () {
+							success: () => {
 								sap.m.MessageToast.show(this.getResourceBundle().getText("adjuntoBorrado"));
 								oList.getBinding("items").refresh();
-							}.bind(this)
+							}
 						});
 					}
-				}.bind(this)
+				}
 			});
 		}
 	});

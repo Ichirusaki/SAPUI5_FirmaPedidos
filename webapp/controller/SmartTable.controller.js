@@ -38,7 +38,7 @@ sap.ui.define([
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
-			oTable.attachEventOnce("updateFinished", function () {
+			oTable.attachEventOnce("updateFinished", () => {
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
@@ -49,11 +49,9 @@ sap.ui.define([
 		},
 		
 		onBeforeRebindTable: function (oEvent) {
-			var mBindingParams = oEvent.getParameter("bindingParams");
-			var oFirmaCheck = this._oFilterBar.getControlByKey("Status");
-			var sChecked = oFirmaCheck.getSelected();
+			var sChecked = this._oFilterBar.getControlByKey("Status").getSelected();
 			var newFilter = new Filter("Status", FilterOperator.EQ, sChecked ? "S" : "N" );
-			mBindingParams.filters.push(newFilter);
+			oEvent.getParameter("bindingParams").filters.push(newFilter);
 		}
 	});
 });

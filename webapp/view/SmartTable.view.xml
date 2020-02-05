@@ -18,13 +18,9 @@
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
 			<smartTable:SmartTable entitySet="PedidoSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable" id="smartTable"
-				useVariantManagement="true" useTablePersonalisation="false" header="{i18n>Pedidos}" showRowCount="true"
-				persistencyKey="SmartTableAnalytical_Pedidos" enableAutoBinding="false" demandPopin="true" class="sapUiResponsiveContentPadding"
-				requestAtLeastFields="Ebeln,Lifnr,Name1,Bedat,Netwr,Waers,Status" editable="false" editTogglable="false"
-				beforeRebindTable="onBeforeRebindTable">
-				<smartTable:layoutData >
-					<FlexItemData growFactor="1" baseSize="0%"/>
-				</smartTable:layoutData>
+				header="{i18n>Pedidos}"	persistencyKey="SmartTableAnalytical_Pedidos" enableAutoBinding="true" demandPopin="true"
+				class="sapUiResponsiveContentPadding" requestAtLeastFields="Ebeln,Lifnr,Name1,Bedat,Netwr,Waers,Status"
+				useTablePersonalisation="false" beforeRebindTable="onBeforeRebindTable">
 				<Table mode="None" growingThreshold="50" growing="true" growingScrollToLoad="true">
 					<columns>
 						<Column customData:p13nData='\{"columnKey": "Estado", "columnIndex": "4", "maxLength": "1", "isCurrency": false, "leadingProperty": "Status", "sortProperty": "Status"}'>
@@ -32,7 +28,7 @@
 						</Column>
 					</columns>
 					<items>
-						<ColumnListItem >
+						<ColumnListItem>
 							<cells>
 								<core:Icon src="sap-icon://signature" tooltip="{ path: 'Status', formatter: '.formatter.tooltipIcono' }"
 								color="{ path: 'Status', formatter: '.formatter.colorIcono' }"/>

@@ -11,11 +11,9 @@ sap.ui.define([
 			 * @returns {string} sValue with 2 digits rounded
 			 */
 			numberUnit : function (sValue) {
-				if (!sValue) {
-					return "";
-				}
-				return parseFloat(sValue).toFixed(2);
+				return sValue ? parseFloat(sValue).toFixed(2) : "";
 			},
+			
 			tooltipIcono : function (sValue) {
 				var sEstado = this.getResourceBundle().getText("noFirmado");
 				
@@ -33,6 +31,7 @@ sap.ui.define([
 				
 				return sEstado;
 			},
+			
 			colorIcono : function (sValue) {
 				var sColor = "";
 				
@@ -50,6 +49,7 @@ sap.ui.define([
 				
 				return sColor;
 			},
+			
 			statusColor : function (sValue) {
 				var sStatus = "None";
 				

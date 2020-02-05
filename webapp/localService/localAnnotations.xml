@@ -63,7 +63,7 @@
 				<Annotation Term="Common.Text" Path="Name1"/>
 			</Annotations>
 			<Annotations Target="Metadata.Pedido/Netwr">
-				<Annotation Term="Org.OData.Measures.V1.ISOCurrency" Path="Waers"/>
+				<Annotation Term="Measures.ISOCurrency" Path="Waers"/>
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>
