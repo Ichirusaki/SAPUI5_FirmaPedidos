@@ -283,7 +283,7 @@ sap.ui.define([
 
 		onFileUploadComplete: function (oEvent) {
 			var iStatus = oEvent.getParameter("status");
-			if (iStatus !== 200 || iStatus !== 201) {
+			if (iStatus < 200 && iStatus >= 300) {
 				sap.m.MessageToast.show(this.getResourceBundle().getText("archivoNoSubido"));
 			} else {
 				sap.m.MessageToast.show(this.getResourceBundle().getText("archivoSubido"));
