@@ -283,7 +283,7 @@ sap.ui.define([
 
 		onFileUploadComplete: function (oEvent) {
 			var iStatus = oEvent.getParameter("status");
-			if (iStatus !== 200) {
+			if (iStatus !== 200 || iStatus !== 201) {
 				sap.m.MessageToast.show(this.getResourceBundle().getText("archivoNoSubido"));
 			} else {
 				sap.m.MessageToast.show(this.getResourceBundle().getText("archivoSubido"));
@@ -335,6 +335,27 @@ sap.ui.define([
 					}
 				}
 			});
+		},
+		
+		onVisualizarPdfPress: function(oEvent) {
+			this._showPDF(oEvent.getSource());
+		},
+		
+		_showPDF: function(oItem) {
+			var sArcdocid = oItem.getBindingContext().getProperty("Arcdocid");
+			var sArchivid = oItem.getBindingContext().getProperty("Archivid");
+			var sArobject = oItem.getBindingContext().getProperty("Arobject");
+			var sEbeln = oItem.getBindingContext().getProperty("Ebeln");
+			var sSapObject = oItem.getBindingContext().getProperty("SapObject");
+			
+			this.getRouter().navTo("pdfViewer", {
+				Arcdocid : sArcdocid,
+				Archivid : sArchivid,
+				Arobject : sArobject,
+				Ebeln : sEbeln,
+				SapObject : sSapObject
+			});
+			
 		}
 	});
 

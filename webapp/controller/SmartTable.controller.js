@@ -4,22 +4,22 @@ sap.ui.define([
 	"tech/sothis/fcd/FirmarCertificado/model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
 	"use strict";
 
 	return BaseController.extend("tech.sothis.fcd.FirmarCertificado.controller.SmartTable", {
 
 		formatter: formatter,
-		
+
 		onInit: function () {
 			var oViewModel,
 				iOriginalBusyDelay,
 				oTable = this.byId("smartTable");
-				// Put down worklist table's original value for busy indicator delay,
+			// Put down worklist table's original value for busy indicator delay,
 			// so it can be restored later on. Busy handling on the table is
 			// taken care of by the table itself.
 			iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
-			
+
 			// Model used to manipulate control states
 			oViewModel = new JSONModel({
 				smartTableTitle: this.getResourceBundle().getText("smartTable"),
@@ -31,9 +31,9 @@ sap.ui.define([
 				tableBusyDelay: 0
 			});
 			this.setModel(oViewModel, "smartTableView");
-		
+
 			var oFilterBar = this.getView().byId("smartFilterBar");
-				this._oFilterBar = oFilterBar;
+			this._oFilterBar = oFilterBar;
 
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
@@ -43,14 +43,14 @@ sap.ui.define([
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 		},
-		
+
 		onBackPress: function (oEvent) {
 			this.onNavBack();
 		},
-		
+
 		onBeforeRebindTable: function (oEvent) {
 			var sChecked = this._oFilterBar.getControlByKey("Status").getSelected();
-			var newFilter = new Filter("Status", FilterOperator.EQ, sChecked ? "S" : "N" );
+			var newFilter = new Filter("Status", FilterOperator.EQ, sChecked ? "S" : "N");
 			oEvent.getParameter("bindingParams").filters.push(newFilter);
 		}
 	});

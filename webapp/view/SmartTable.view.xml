@@ -8,11 +8,11 @@
 					<core:CustomData key="dateFormatSettings" value='\{"UTC":true\}'/>
 				</smartFilterBar:customData>
 				<smartFilterBar:controlConfiguration groupId="_BASIC">
-					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Lifnr" index="1" visibleInAdvancedArea="true" filterType="single"></smartFilterBar:ControlConfiguration>
-					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Bedat" index="2" visibleInAdvancedArea="true" filterType="single"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Lifnr" index="1" visibleInAdvancedArea="true" filterType="single"/>
+					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Bedat" index="2" visibleInAdvancedArea="true" filterType="single"/>
 					<smartFilterBar:ControlConfiguration groupId="_BASIC" key="Status" index="3" visibleInAdvancedArea="true" label="{i18n>firmado}">
 						<smartFilterBar:customControl>
-							<CheckBox></CheckBox>
+							<CheckBox/>
 						</smartFilterBar:customControl>
 					</smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>

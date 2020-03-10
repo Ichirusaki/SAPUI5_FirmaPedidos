@@ -161,6 +161,13 @@
 					"target": [
 						"smartTable"
 					]
+				},
+				{
+					"pattern": "PedidoSet/{Ebeln}/PDF/{Arcdocid},{Archivid},{Arobject},{SapObject}",
+					"name": "pdfViewer",
+					"target": [
+						"pdfViewer"
+					]
 				}
 			],
 			"targets": {
@@ -175,6 +182,12 @@
 					"viewId": "object",
 					"viewLevel": 2,
 					"title": "{i18n>objectViewTitle}"
+				},
+				"pdfViewer": {
+					"viewName": "PDFViewer",
+					"viewId": "pdfViewer",
+					"viewLevel": 3,
+					"title": "{i18n>pdfViewTitle}"
 				},
 				"editarPedido": {
 					"viewName": "EditarPedido",

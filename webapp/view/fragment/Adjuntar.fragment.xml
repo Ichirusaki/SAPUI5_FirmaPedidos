@@ -23,6 +23,7 @@
 									<Text text="{Nombre}"/>
 									<Label text="{i18n>tamanyo}: {path: 'Peso', formatter: '.formatter.pesoArchivo'}"/>
 									<Label text="{i18n>fechaAdjunto}: { path: 'Fecha', type: 'sap.ui.model.type.Date'}"/>
+									<core:Icon src="sap-icon://show" tooltip="{i18n>visualizar}" press="onVisualizarPdfPress"/>
 								</VBox>
 							</HBox>
 						</CustomListItem>

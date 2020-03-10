@@ -1,0 +1,15 @@
+<mvc:View controllerName="tech.sothis.fcd.FirmarCertificado.controller.PDFViewer" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>pdfViewTitle}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<PDFViewer id="oPdfViewer">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</PDFViewer>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>
