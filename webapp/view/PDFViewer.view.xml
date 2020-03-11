@@ -5,7 +5,7 @@
 			<Title text="{i18n>pdfViewTitle}"/>
 		</semantic:titleHeading>
 		<semantic:content>
-			<PDFViewer id="oPdfViewer">
+			<PDFViewer id="oPdfViewer" showDownloadButton="false">
 				<layoutData>
 					<FlexItemData growFactor="1" />
 				</layoutData>

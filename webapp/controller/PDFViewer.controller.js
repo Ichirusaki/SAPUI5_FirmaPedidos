@@ -33,6 +33,8 @@ sap.ui.define([
 			var sArobject = oEvent.getParameter("arguments").Arobject;
 			var sEbeln = oEvent.getParameter("arguments").Ebeln;
 			var sSapObject = oEvent.getParameter("arguments").SapObject;
+			
+			this.byId("oPdfViewer").setTitle(this.getResourceBundle().getText("pdfViewerTitle", [sEbeln]));
 
 			this.getModel().metadataLoaded().then(() => {
 				var sObjectPath = this.getModel().createKey("ArchivoSet", {
